@@ -25,10 +25,6 @@ class ViewController: UIViewController {
         setDataCount()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        animateChart()
-    }
     
     // MARK: - Private Methods
     private func initialSetup() {
@@ -42,6 +38,9 @@ class ViewController: UIViewController {
             make.height.equalTo(200)
             make.center.equalToSuperview()
         }
+        
+        let animateBarButton = UIBarButtonItem(title: "Animate", style: .done, target: self, action: #selector(animateChart))
+        navigationItem.rightBarButtonItem = animateBarButton
     }
     
     private func dataSetup() {
@@ -121,7 +120,7 @@ class ViewController: UIViewController {
         chartView.setNeedsDisplay()
     }
     
-    private func animateChart() {
+    @objc private func animateChart() {
         self.chartView.animate(xAxisDuration: 1.2, easingOption: .easeOutBack)
     }
 }
